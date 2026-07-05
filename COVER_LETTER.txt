@@ -1,0 +1,39 @@
+PIPELINE
+
+Hi Stack Growth Solutions team,
+
+Senior automation + AI integration engineer here — the kind of "I study how a business runs, map the data flow, build the system, hand it off to the ops team" person your JD describes. Three points upfront, then 5 mandatory answers (full versions inside the proposal):
+
+1. **Your exact engagement shape is what I ship.** Adapter-per-system plugins (accounting/CRM/payroll/ops/reporting), Claude Code agents with two-phase commit + Pydantic validation, ETL with source-deterministic idempotency keys, Monday/Notion workspace buildouts via API, every one-off build hardened into a reusable template in W2. Prior portfolio: JOB-128 (tuinui marketing-data pipeline, Slack + GA4 + Google Ads via Composio SDK + FastAPI), JOB-130 (Composio CRM chatbot, two-phase commit write safety), JOB-126 (Persistent Reasoning Engine, structured Claude workflows + memory + audit trail). 20 years building systems that run without supervision, including a real-time platform connecting SAP + Oracle Retail + IBM AS/400 to 3,000+ POS terminals.
+
+2. **Honest disclosures before you interview me.** (a) My prior work is retail/operations + AI/data — not PE/finance. JD says finance is a "plus, not a requirement," architecture skills transfer; domain knowledge ramps in W1. (b) Bangkok TZ (UTC+7). Working 8-14 BKK = 19:01-01:00 EST, giving 6 hrs US Eastern overlap at the end of your workday. Async-first + 1hr daily sync at 21:00 EST = 09:00 BKK. (c) I have used similar middleware (MuleSoft, Apache Camel, custom Python) but not n8n specifically — the paid test project is the calibration window.
+
+3. **My framework answer: LangGraph, not CrewAI or AutoGen.** Reasons: native interrupt points for human-in-loop (your "validation and human oversight so they are dependable"), first-class Postgres-backed checkpointing for workflow memory, OpenTelemetry tracing on every node. Same pattern as JOB-130.
+
+The 5 mandatory answers, specific + audit-able on GitHub (per your "answers without specifics will not be considered"):
+
+- **Q1 — Most complex end-to-end:** tuinui marketing-data pipeline (JOB-128). Slack + GA4 + Google Ads → Postgres warehouse → 3 downstream consumers (dashboard, alerting, weekly Slack summary). What broke most: OAuth token refresh race during long batches (now caught by refresh-health cron). What I'd rebuild: schema evolution — `extra='allow'` everywhere with a downstream allowlist (not denylist).
+- **Q2 — No native connector:** custom Slack Events adapter (JOB-128). HMAC-SHA256 signing + OAuth bot token. 429-respect + exponential backoff + dead-letter queue + admin retry. Silent-failure detection: correlation IDs, receipt-vs-processed counter (page if delta > 5 for 5 min), per-consumer heartbeat to `consumer_health` table.
+- **Q3 — Advanced non-chatbot LLM:** Persistent Reasoning Engine (JOB-126). Multi-step research agent, memory + tool calls + citation-backed reports for daily analyst use. Reliability: Pydantic validation on every Claude output (retry with stronger prompt + error context; escalate after 3); two-phase commit on client-facing writes; tool calls in retry/backoff that doesn't re-run the LLM; full audit trail by correlation ID, replayable in <30s.
+- **Q4 — Two-system reconciliation:** explicit ownership table (accounting = money, CRM = customers, reporting = derived); one-way sync by default; scheduled reconciliation every 15 min; drift as hard (missing record — auto-create if safe, escalate if financial), soft (field disagreement — overwrite with owning-system value), or financial (NEVER auto-correct, escalate to CFO); drift dashboard with time-since-clean-sync targets per entity type.
+- **Q5 — Rate / availability / TZ:** $40/hr top-of-band (you noted openness to higher for fit — happy to discuss). 30-40 hrs/wk. Bangkok 8-14 BKK = 19:01-01:00 EST (6 hrs US Eastern overlap), async-first otherwise, daily 1hr sync at 21:00 EST.
+
+What you get:
+- Senior engineer who maps messy real-world processes, designs the system, hands ops something they can run without me.
+- Every build born with a "extract template" task in W2 — cross-client reuse is the default.
+- Public repos backing every claim — audit any line on GitHub.
+
+Kickoff blockers: (1) which 2-3 client stacks are highest priority for W1-W4, (2) existing n8n instance or set one up, (3) Claude model tier default (Sonnet/Opus/per-workflow). Optional: human-in-loop UX, DR SLA, compliance posture, existing Zapier migrations.
+
+Best,
+KMan
+mongkolpoj@tuinui.com
+https://github.com/9KMan
+
+---
+
+GitHub Repo: https://github.com/9KMan/JOB-20260705142000-000132
+Public portfolio:
+- JOB-128 (tuinui marketing-data pipeline, Composio + FastAPI): github.com/9KMan/JOB-20260702144531-000128
+- JOB-130 (Composio CRM chatbot, two-phase commit): github.com/9KMan/JOB-20260705085302-000130
+- JOB-126 (Persistent Reasoning Engine, structured Claude workflows): github.com/9KMan/JOB-20260701155102-000126

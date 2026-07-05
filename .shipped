@@ -1,0 +1,17 @@
+# Shipped sentinel - DO NOT REMOVE
+# Prevents gsd-build.py from wiping this worker directory after a successful ship.
+
+job_id=JOB-20260705142000-000132
+github_url=https://github.com/9KMan/JOB-20260705142000-000132
+shipped_at=2026-07-05T14:30:00Z
+shipped_by=kman-hermes-platform-build
+ship_phase=A (built in parallel with cover letter + apply kit)
+bid_status=delivered_to_apply_kit
+prior_job_parity=JOB-127 production-platform pattern (reference scaffold for the bid)
+bid_amount=$40/hr top-of-band, client open to higher
+engagement_shape=application + live portfolio walkthrough + paid 1-week test project -> ongoing >6 months
+pillars=6 (integration, AI, ETL, reconciliation, workspaces, templates)
+files_in_repo=8 (5 top-level + .planning/CONTEXT.md + .planning/RESEARCH.md + .shipped)
+honest_disclosure=retail/ops+AI_background_NOT_PE_finance; Bangkok_TZ_8-14_BKK=19-01_EST_6h_overlap; no_n8n_specifically
+claude_version=hermes-agent
+llm_model=MiniMax-M3
